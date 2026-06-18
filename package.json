@@ -46,6 +46,6 @@
   "author": "Vanessa Pellegrini",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VanessaPellegrini/van-decode-text"
+    "url": "git+https://github.com/VanessaPellegrini/van-decode-text.git"
   }
 }
