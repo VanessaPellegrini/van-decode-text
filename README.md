@@ -17,6 +17,10 @@
   </a>
 </p>
 
+## Demo
+
+![decode-text-demo](./assets/decode-text-demo.gif)
+
 ## What it does
 
 Shows text as binary (`01010010 01100101`) and when triggered, scrambles through random characters before settling on the final text — like a hacker terminal decoding a message.
