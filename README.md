@@ -70,7 +70,7 @@ function SkillChip() {
 ## Utility
 
 ```tsx
-import { toBinaryGlyph } from "@van/decode-text";
+import { toBinaryGlyph } from "van-decode-text";
 
 toBinaryGlyph("React"); // "01010010 01100101 01100011"
 toBinaryGlyph("Hi", 2); // "01001000 01101001"
