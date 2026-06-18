@@ -66,8 +66,8 @@ function SkillChip() {
 | `reducedMotion` | `boolean` | `false` | Skips animation, shows text immediately. |
 | `duration` | `number` | `252` | Total animation duration in ms. |
 | `characterSet` | `string` | `01ABCDEF…#$%&*` | Characters used during scramble. |
-| `binaryClassName` | `string` | `"decode-text-binary"` | CSS class for binary element. |
-| `revealClassName` | `string` | `"decode-text-reveal"` | CSS class for revealed element. |
+| `binaryClassName` | `string` | `"decode-text-binary"` | CSS class used while showing binary text. |
+| `revealClassName` | `string` | `"decode-text-reveal"` | CSS class used while decoding or showing revealed text. |
 | `maxBinaryChars` | `number` | `4` | Max chars used to generate binary glyph. |
 | `onDecodeComplete` | `() => void` | — | Fires when animation finishes. |
 
@@ -82,25 +82,27 @@ toBinaryGlyph("Hi", 2); // "01001000 01101001"
 
 ## CSS
 
-The component uses class transitions. Add these to your styles:
+The component renders a single visible text layer. Use the classes for styling only; no hide/show CSS is required.
 
 ```css
-.decode-text-binary--hidden {
-  display: none;
+.decode-text-binary {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.04em;
 }
 
-.decode-text-reveal--visible {
-  /* your reveal styles */
+.decode-text-reveal {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.02em;
 }
 ```
 
-Or use Tailwind:
+You can pass the same class for both states if you want identical styling:
 
 ```tsx
 <DecodedText
   isDecoded={isActive}
-  binaryClassName="opacity-100 data-[hidden]:opacity-0"
-  revealClassName="opacity-0 data-[visible]:opacity-100"
+  binaryClassName="font-mono tracking-wide"
+  revealClassName="font-mono tracking-wide"
 >
   React
 </DecodedText>

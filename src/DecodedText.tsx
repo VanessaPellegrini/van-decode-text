@@ -21,14 +21,10 @@ export const DecodedText: React.FC<DecodedTextProps> = ({
   const resolvedBinary = binaryText ?? toBinaryGlyph(children, maxBinaryChars);
   const [displayText, setDisplayText] = useState(resolvedBinary);
   const prevBinaryRef = useRef(resolvedBinary);
-  const prevIsDecodedRef = useRef(isDecoded);
-  const prevReducedMotionRef = useRef(reducedMotion);
   const onDecodeCompleteRef = useRef(onDecodeComplete);
 
-  // Keep callback ref fresh
   onDecodeCompleteRef.current = onDecodeComplete;
 
-  // Reset when binaryText changes while not decoded
   if (prevBinaryRef.current !== resolvedBinary) {
     prevBinaryRef.current = resolvedBinary;
     if (!isDecoded) {
@@ -36,23 +32,21 @@ export const DecodedText: React.FC<DecodedTextProps> = ({
     }
   }
 
-  // Handle state transitions
-  if (prevIsDecodedRef.current !== isDecoded || prevReducedMotionRef.current !== reducedMotion) {
-    prevIsDecodedRef.current = isDecoded;
-    prevReducedMotionRef.current = reducedMotion;
-    if (isDecoded && reducedMotion) {
-      setDisplayText(children);
-    } else if (!isDecoded) {
-      setDisplayText(resolvedBinary);
-    }
-  }
-
   useEffect(() => {
-    if (!isDecoded || reducedMotion) return;
+    if (!isDecoded) {
+      setDisplayText(resolvedBinary);
+      return;
+    }
+
+    if (reducedMotion) {
+      setDisplayText(children);
+      onDecodeCompleteRef.current?.();
+      return;
+    }
 
     const totalMs = duration ?? DEFAULT_DURATION_MS;
     const frameMs = DEFAULT_FRAME_MS;
-    const settleFrames = Math.round(totalMs / frameMs);
+    const settleFrames = Math.max(1, Math.round(totalMs / frameMs));
 
     let frame = 0;
 
@@ -78,26 +72,14 @@ export const DecodedText: React.FC<DecodedTextProps> = ({
     }, frameMs);
 
     return () => clearInterval(intervalId);
-  }, [isDecoded, reducedMotion, children, duration, characterSet]);
+  }, [isDecoded, reducedMotion, resolvedBinary, children, duration, characterSet]);
 
-  const hiddenClass = `${binaryClassName}--hidden`;
-  const visibleClass = `${revealClassName}--visible`;
+  const className = isDecoded ? revealClassName : binaryClassName;
 
   return (
-    <>
-      <span
-        className={`${binaryClassName}${isDecoded ? ` ${hiddenClass}` : ""}`}
-        aria-hidden={isDecoded}
-      >
-        {resolvedBinary}
-      </span>
-      <span
-        className={`${revealClassName}${isDecoded ? ` ${visibleClass}` : ""}`}
-        aria-hidden={!isDecoded}
-      >
-        {displayText}
-      </span>
-    </>
+    <span className={className} data-decoded={isDecoded ? "true" : "false"}>
+      {displayText}
+    </span>
   );
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "van-decode-text",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React component that decodes binary text with a hacker-terminal scramble effect",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -46,6 +46,6 @@
   "author": "Vanessa Pellegrini",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VanessaPellegrini/decode-text"
+    "url": "https://github.com/VanessaPellegrini/van-decode-text"
   }
 }
