@@ -1,11 +1,12 @@
-# @van/decode-text
+# van-decode-text
 
 > React component that decodes binary text with a hacker-terminal scramble effect.
 
 <p align="center">
+  <img src="https://img.shields.io/npm/v/van-decode-text?color=blue" alt="npm" />
   <img src="https://img.shields.io/badge/React-18+-61DAFB" alt="React 18+" />
   <img src="https://img.shields.io/badge/TypeScript-5.4+-3178C6" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/size-<1KB-green" alt="<1KB" />
+  <img src="https://img.shields.io/badge/size-3.7KB-green" alt="3.7KB" />
   <img src="https://img.shields.io/badge/zero_dependencies-success" alt="Zero deps" />
   <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT" />
 </p>
@@ -23,14 +24,14 @@ Decoded:  React
 ## Install
 
 ```bash
-npm install @van/decode-text
+npm install van-decode-text
 ```
 
 ## Usage
 
 ```tsx
 import { useState } from "react";
-import { DecodedText } from "@van/decode-text";
+import { DecodedText } from "van-decode-text";
 
 function SkillChip() {
   const [isActive, setIsActive] = useState(false);
