@@ -11,6 +11,12 @@
   <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT" />
 </p>
 
+<p align="center">
+  <a href="https://ko-fi.com/vanp">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
+  </a>
+</p>
+
 ## What it does
 
 Shows text as binary (`01010010 01100101`) and when triggered, scrambles through random characters before settling on the final text — like a hacker terminal decoding a message.
