@@ -1,6 +1,6 @@
 {
   "name": "van-decode-text",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React component that decodes binary text with a hacker-terminal scramble effect",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
